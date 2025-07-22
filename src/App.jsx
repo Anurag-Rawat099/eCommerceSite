@@ -10,6 +10,7 @@ import Orders from './pages/Orders'
 import PlaceOrder from './pages/PlaceOrder'
 import Product from './pages/Product'
 import { Route, Routes  } from 'react-router-dom'
+import Footer from './components/Footer'
 
 function App() {
   return (
@@ -24,9 +25,9 @@ function App() {
         < Route path="/login" element={<Login />} />
         < Route path="/orders" element={<Orders />} />
         < Route path="/placeOrder" element={<PlaceOrder />} />
-        < Route path="/product" element={<Product />} />
+        < Route path="/product/:productId" element={<Product />} />
       </Routes>
-
+      <Footer/>
 
     </div>
 

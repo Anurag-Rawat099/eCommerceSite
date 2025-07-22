@@ -13,4 +13,4 @@ const ShopContextProvider = ({ children }) => {
   return <ShopContext.Provider value={value}>{children}</ShopContext.Provider>;
 };
 
-export default ShopContextProvider;
+export default ShopContextProvider; 
