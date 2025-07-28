@@ -6,6 +6,7 @@ const ShopContextProvider = ({ children }) => {
   const currency = "$";
   const deliveryFee = 10;
   const [cartItem, setCartItem] = useState({});
+
   const addToCart = (itemId, size) => {
     if (!size) {
       alert("select the size");
@@ -18,22 +19,42 @@ const ShopContextProvider = ({ children }) => {
       } else {
         cartData[itemId][size] = 1;
       }
-    }else{
-      cartData[itemId]={}
-      cartData[itemId][size]=1;
+    } else {
+      cartData[itemId] = {}
+      cartData[itemId][size] = 1;
     }
-
+     setCartItem(cartData)
   };
-useEffect(()=>{
-  console.log(cartItem);
-})
-const value = {
+ 
+
+
+  const getCartCount = () => {
+    let totalCount = 0;
+    for (const items in cartItem) {
+      for (item in cartItem[items]) {
+        try {
+          if (cartItem[items][item > 0]) {
+            totalCount += cartItem[items][item]
+          }
+        }
+        catch (error) { }
+      }
+    }
+    return totalCount;
+  }
+
+  useEffect(() => {
+    console.log(cartItem);
+  })
+  const value = {
     products,
     currency,
     deliveryFee,
-    addToCart,
+    cartItem,addToCart,getCartCount
   };
-  return <ShopContext.Provider value={value}>{children}</ShopContext.Provider>;
+  return <ShopContext.Provider value={value}>
+    {children}
+  </ShopContext.Provider>;
 };
 
 export default ShopContextProvider; 
